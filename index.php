@@ -5,12 +5,16 @@
         <style>
             .dither {
                 visibility:hidden;
-                width:144px
             }
 
             .hiddenCanvas{
 
             }    
+            #drop {
+                height: 100px;
+                width : 100px;
+                background-color: red;
+            }
         </style>
 
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -25,33 +29,50 @@
 
     </head>
     <body>
-        <img class="dither" id="target" src="tests/parrot-zoo-small.jpg" />
+  <!--    <img class="dither" id="target" src="tests/pebble_colors_64.gif" />  -->
 
-        <form action="upload.php" class="drop"></form>
+        <form action="upload.php" class="dropzone"></form>
 
 
 
         <script>
 
-        $( document ).ready(function() {
-            console.log('ready');
+//http://www.dropzonejs.com/
+Dropzone.autoDiscover = false;
+$(document).ready(function() {
+    console.log('ready');
+    /*
+       var options = {
+            "step": 1,
+            "algorithm": "nearest", //ordered // atkinson // errorDiffusion
+            "className": "dithered",
+            "palette": pebbleColors()
+        };
+     var ditherResult = $('.dither').ditherJS(options, postAjax);*/
+});
 
-            var options = {
-                "step":1,
-                "algorithm": "ordered",
-                "className": "dithered",
-                "palette" : pebbleColors()
-            };
+$(function() {
+    var myDropzone = new Dropzone(".dropzone");
+    myDropzone.on("complete", function(file, result) {
+        console.log("complete");
+        var returnedElem = $(file.previewElement);
+        var options = {
+            "step": 1,
+            "algorithm": "nearest", // nearest // ordered // atkinson // errorDiffusion
+            "className": "dithered",
+            "palette": pebbleColors()
+        };
+        var ditherResult = returnedElem.find('img').ditherJS(options, postAjax);
+    });
+})
 
-            var ditherResult = $('.dither').ditherJS(options, PostAjax);
-
-            function PostAjax(dataUrl) {
+            function postAjax(dataUrl) {
                 console.log(dataUrl);
 
-/*
+
                 $.ajax({
                   type: "POST",
-                  url: "imageupload.php",
+                  url: "upload.php",
                   data: { 
                      imgBase64: dataUrl
                   }
@@ -61,18 +82,11 @@
                   // - please modify the callback in javascript. All you
                   // need is to return the url to the file, you just saved 
                   // and than put the image in your browser.
-                })*/
+                })
             }
 
-            var dropOptions = 
-            $('.drop').dropzone( {url:"uploads")
 
 
-
-
-        });
-
-        
 
 
         </script>
