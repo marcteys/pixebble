@@ -29,7 +29,7 @@
 
     </head>
     <body>
-  <!--    <img class="dither" id="target" src="tests/pebble_colors_64.gif" />  -->
+      <img class="dither" id="target" src="tests/jpg.jpg" /> 
 
         <form action="upload.php" class="dropzone"></form>
 
@@ -41,14 +41,14 @@
 Dropzone.autoDiscover = false;
 $(document).ready(function() {
     console.log('ready');
-    /*
+    
        var options = {
             "step": 1,
             "algorithm": "nearest", //ordered // atkinson // errorDiffusion
             "className": "dithered",
             "palette": pebbleColors()
         };
-     var ditherResult = $('.dither').ditherJS(options, postAjax);*/
+     var ditherResult = $('.dither').ditherJS(options, postAjax);
 });
 
 $(function() {

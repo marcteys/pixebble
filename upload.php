@@ -29,18 +29,38 @@ $storeFolder = "uploads";
 
 if (!empty($_POST['imgBase64'])) {
 
-
 	define('UPLOAD_DIR', 'images/');
 	$img = $_POST['imgBase64'];
 	$img = str_replace('data:image/png;base64,', '', $img);
 	$img = str_replace(' ', '+', $img);
 	$data = base64_decode($img);
-	$file = UPLOAD_DIR . uniqid() . '.png';
+	$id = uniqid();
+	$file = UPLOAD_DIR . $id. '.png';
 	$success = file_put_contents($file, $data);
 	print $success ? $file : 'Unable to save the file.';
 
 
+
+	convertPNGto8bitPNG($file,$file);
+
 }
+
+
+ function convertPNGto8bitPNG($sourcePath, $destPath) {
+    $srcimage = imagecreatefrompng($sourcePath);
+    list($width, $height) = getimagesize($sourcePath);
+    $img = imagecreatetruecolor($width, $height);
+    $bga = imagecolorallocatealpha($img, 0, 0, 0, 127);
+    imagecolortransparent($img, $bga);
+    imagefill($img, 0, 0, $bga);
+    imagecopy($img, $srcimage, 0, 0, 0, 0, $width, $height);
+    imagetruecolortopalette($img, false, 255);
+    imagesavealpha($img, true);
+    imagepng($img, $destPath);
+    imagedestroy($img);
+  }
+
+
 
 
 /*
