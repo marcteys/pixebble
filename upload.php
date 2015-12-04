@@ -35,14 +35,11 @@ if (!empty($_POST['imgBase64'])) {
 	$img = str_replace(' ', '+', $img);
 	$data = base64_decode($img);
 	$id = uniqid();
+	$id = "last";
 	$file = UPLOAD_DIR . $id. '.png';
 	$success = file_put_contents($file, $data);
 	print $success ? $file : 'Unable to save the file.';
-
-
-
 	convertPNGto8bitPNG($file,$file);
-
 }
 
 
