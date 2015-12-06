@@ -3,16 +3,12 @@
 <head>
 	<title>Pixeble</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="assets/lib/zepto.min.js"></script>
 	<script src="assets/lib/ditherjs.js"></script>
 	<script src="assets/lib/colors.js"></script>
-	<script src="assets/lib/jquery.ditherjs.js"></script>
 	<script src="assets/lib/dropzone/dropzone.min.js"></script>
-
 	<script src="app/utils.js"></script>
 	<script src="app/pixeble.js"></script>
-
 </head>
 <body>
 	<div class="content">
@@ -24,22 +20,21 @@
 			    <h4>Settings</h4>
 			</div>
 		</div>
-
 		<div class="container">
 			<form action="upload.php" class="dropzone"></form>
 			<div class="watchzone">
 			</div>
 		</div>
-
 		<div class="trigger"></div> 
 	</div>
 
 	<script type="text/javascript">
+		Dropzone.autoDiscover = false;
 		$(document).ready(function() {
 			var settings = {
 				debug: true,
 				watchzone: $(".watchzone"),
-				watches: ['pog', 'ptr', 'pt']
+				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}]
 			};
 
 			Pixeble.init(settings);

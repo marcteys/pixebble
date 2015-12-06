@@ -143,19 +143,19 @@ position: absolute;
 }
 
 
-.imagezone {
+.preview-zone {
    -moz-box-sizing:    border-box;
    -webkit-box-sizing: border-box;
    box-sizing:         border-box;
 }
 
-.imagezone.active /*, .watch.active .imagezone:hover */ {
+.preview-zone.active /*, .watch.active .preview-zone:hover */ {
     box-shadow:inset 0 0 10px 5px #ff4700;
 }
-.watch.active .imagezone:hover  {
+.watch.active .preview-zone:hover  {
     box-shadow:inset 0 0 10px 5px rgba(255,71,0,1);
 }
-.ptr .imagezone{
+.ptr .preview-zone{
 	position: absolute;
 	background: #aaaaaa;
 	height: 180px;
@@ -167,7 +167,7 @@ position: absolute;
     background-image: url("../img/180.png");
 
 }
-.pt .imagezone{
+.pt .preview-zone{
 	position: absolute;
 	background: #aaaaaa;
 	height: 168px;
@@ -179,7 +179,7 @@ position: absolute;
     background-image: url("../img/144.png");
 
 }
-.pog .imagezone{
+.pog .preview-zone{
 	position: absolute;
 	background: #aaaaaa;
 	height: 168px;

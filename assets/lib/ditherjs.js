@@ -30,7 +30,7 @@ var DitherJS = function DitherJS(selector,opt,callback) {
     ];
 
     this.palette = self.opt.palette;
-    console.log("Start Dither in mode " + self.opt.algorithm );
+    console.log("DitherJs: Start in mode " + self.opt.algorithm );
 
     /**
      * Reload src image and put draw into it
@@ -41,7 +41,7 @@ var DitherJS = function DitherJS(selector,opt,callback) {
         el.onload = function() { 
             var start_time = Date.now();
             var result = self._dither(el);
-            console.log('Microtime: ', Date.now()-start_time );
+            console.log('DitherJs: Microtime: ', Date.now()-start_time );
             if(typeof callback !== "undefined" ) callback(self.base64Image);
         }
     };
@@ -425,20 +425,23 @@ var DitherJS = function DitherJS(selector,opt,callback) {
         //canvas.style.visibility = "visible";
     }
 
-
     /**
     * Main
     * */
     try {
-        var elements = document.querySelectorAll(selector);
-
-        //  deal with multiple
-        for (var i=0;i<elements.length;i++) {
-            this._refreshDither(elements[i]);
-        } 
-
+        if(typeof selector === "string") {
+            var elements = document.querySelectorAll(selector);
+            //  deal with multiple
+            for (var i=0;i<elements.length;i++) {
+                this._refreshDither(elements[i]);
+            }
+        } else {
+            this._refreshDither(selector);
+        }
     } catch (e) {
         // Officially not in the browser
+        this._refreshDither(selector);
+        console.log("DitherJs: Oops");
     }
 
 };

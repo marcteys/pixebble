@@ -10,7 +10,7 @@ var templates = {
             var name = names[index];
             $.get('app/templates/' + name + '.html', function (data) {
                 that.templates[name] = data;
-                console.log('Loading template: ' + name);
+                console.log('Template: Loading template: ' + name);
                 index++;
                 if (index < names.length) {
                     loadTemplate(index);
@@ -25,31 +25,24 @@ var templates = {
     get:function (name, data) {
         var htmlTemplate = this.templates[name];
 
+        // Inject template in {{}}
         if(typeof data !== 'undefined') {
-          for(var i=0;i<data.length;i++){
-            var obj = data[i];
-            //extract each value and attribute the 
-            for(var key in obj)
+            for(var key in data)
             {
               var attrName = key;
-              var attrValue = obj[key];
-         
-              if(typeof attrValue === 'string')  // if it's a single element (update the home page etc)
+              var attrValue = data[key];
+              if(typeof attrValue === 'string' || typeof attrValue === 'number') 
               {
                 var reg = new RegExp('\{\{\\s*'+attrName+'\\s*\}\}', 'g');
-               // htmlTemplate = reg.exec(htmlTemplate, attrValue);
                 htmlTemplate = htmlTemplate.replace(reg, attrValue);
               }
             }
-
-              var reg = new RegExp('\{\{\\s*.\\s*\}\}', 'g');
-               // htmlTemplate = reg.exec(htmlTemplate, attrValue);
-                htmlTemplate = htmlTemplate.replace(reg, attrValue);
-          }
+            //Remove all unused {{}}
+            var reg = new RegExp('\{\{\\s*(.*)\\s*\}\}', 'g');
+            htmlTemplate = htmlTemplate.replace(reg, '');
         }
-
         return htmlTemplate;
-    }
+    },
 
 };  
 
