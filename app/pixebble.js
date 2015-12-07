@@ -1,4 +1,4 @@
-var Pixeble = {
+var Pixebble = {
 
 	options : null,
 	dropzone: null,
@@ -7,7 +7,7 @@ var Pixeble = {
 
 	init: function(settings) {
 		GlobalDebug(settings.debug);
-		console.log("Pixeble: init");
+		console.log("Pixebble: init");
 		var that = this;
 		this.options = settings;
 		templates.loadTemplates(['watch'], function() {
@@ -116,7 +116,6 @@ var Pixeble = {
 			 var returnedElem = $(file.previewElement);
 			 if($(that.dropzone.previewsContainer).children().length > 1)
 				$(that.dropzone.previewsContainer).children().first().remove()
-
 			var options = {
 				"step": 1,
 				"algorithm": that.ditherAlgorithm, // nearest // ordered // atkinson // errorDiffusion
