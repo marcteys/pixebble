@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Pixeble</title>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="assets/lib/zepto.min.js"></script>
 	<script src="assets/lib/ditherjs.js"></script>
@@ -16,8 +17,28 @@
 			<div class="logo">
 			    <h1><strong>Pixe</strong>ble</h1>  
 			</div>
+			<a class="get-app">Get the app</a>
 			<div class="settings">
 			    <h4>Settings</h4>
+			 	<h5>Dither algorithm</h5>
+			 	<div class="dither-type-select">
+				 	<select>
+						<option value="nearest">Nearest</option>
+						<option value="ordered">Ordered</option>
+						<option value="atkinson">Atkinson</option>
+						<option value="errorDiffusion">Error Diffusion</option>
+					</select>
+			 	</div>
+
+			 	<h5>Unique Identifier</h5>
+			 	<div class="user-id-container saved">
+			 		<input type="text" class="user-id" value="UI-DSL-584" /><button class="new-id">New</button>
+			 	</div>
+			 	<h4 class="margin-top">Recent uploads</h4>
+			 	<div class="recent-uploads">
+			 		
+			 	</div>
+	
 			</div>
 		</div>
 		<div class="container">
@@ -36,7 +57,6 @@
 				watchzone: $(".watchzone"),
 				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}]
 			};
-
 			Pixeble.init(settings);
 		});
 	</script>

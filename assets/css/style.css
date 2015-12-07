@@ -54,12 +54,12 @@ table {
 
 body,html {
 	color:#ccc;
+	font-family: 'Open Sans', sans-serif;
 }
 .content {
 	height: 100%;
 	width: 100%;
 	display: block;
-
 }
 .sidebar {
 	position: absolute;
@@ -73,12 +73,183 @@ body,html {
 }
 .logo {
 	height: 100px;
-	border-bottom: 1px solid #ccc;
 }
 
 h1 {
+	width: 100%;
+	height: 100px;
+	background: url('../img/logo.png') 35px center no-repeat;
+	font-size: 38px;
+	line-height: 100px;
+	font-weight: 400;
+	color: black;
+	text-transform:uppercase;
+	text-align: center;
+}
+h1 strong {
+	font-weight: 600;
+}
+
+.settings {
+	padding: 20px;
+}
+.settings h4 {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 600;
+	border-bottom: 1px solid #b3b3b3;
+	line-height: 35px;
+	height: 35px;
+	color: #b3b3b3;
+	margin-top: 30px;
+}
+.settings h5 {
+	color: #575757;
+	margin: 20px 0 15px;
+	font-size: 14px;
+}
+
+a.get-app {
+	border: 1px solid #ff4700;
+	font-weight: 300;
+	font-size: 12px;
+	text-align: center;
+	width: 150px;
+	height: 30px;
+	margin: 10px auto;
+	color: #535353;
+	display: block;
+	border-radius: 3px;
+	line-height: 30px;
+	text-transform: uppercase;
+}
+
+.settings .dither-type-select {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.settings .dither-type-select:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: -2;
+}
+.settings .dither-type-select:after {
+  content: " ";
+  position: absolute;
+  display: block;
+  font-size: 24px;
+  right: 15px;
+  line-height: 1;
+  z-index: -1;
+  -webkit-transition: color 200ms ease;
+          transition: color 200ms ease;
+    content: " ";
+    position: absolute;
+    margin-top: -2px;
+    top: 50%;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #ccc;
 
 }
+.settings .dither-type-select:hover:after {
+      border-top: 5px solid #545454;
+}
+.settings .dither-type-select select {
+  width: calc(100% + 20px);
+  border: none;
+  background-color: transparent;
+  font: inherit;
+  height: 40px;
+  font-size: 15px;
+  line-height: 35px;
+  padding-left: 10px;
+  padding-right: 65px;
+  color: #212121;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+}
+.settings .dither-type-select select::-ms-expand {
+  display: none;
+}
+.settings .dither-type-select select:focus {
+  outline: none;
+}
+
+input.user-id {
+	width: calc(50%);
+	border: none;
+	background-color: transparent;
+	font: inherit;
+	height: 40px;
+	font-size: 15px;
+	line-height: 35px;
+	padding-left: 10px;
+	padding-right: 65px;
+	color: #212121;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: white;
+}
+.user-id-container {
+  position: relative;
+}
+
+.user-id-container.saved:after {
+	content: " ";
+	box-shadow: inset 4px -4px 0 #ff4700;
+	height: 10px;
+	transform: rotate(-45deg);
+	width: 20px;
+	position: absolute;
+	display: block;
+	left: 64%;
+	line-height: 1;
+	z-index: 1;
+	-webkit-transition: opacity 300ms ease;
+	top: 15px;
+}
+
+
+
+button.new-id {
+	background: #ff4700;
+	border-radius: 4px;
+	border: none;
+	height: 42px;
+	width: calc(20% );
+	margin-left: 10px;
+	color:white;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+button.new-id:hover {
+	opacity: .9;
+}
+button.new-id:focus {
+	outline: none;
+}
+
+.recent-uploads {
+
+}
+
 
 .container {
 	position: absolute;
@@ -116,12 +287,12 @@ position: absolute;
 	transition:all 1s;
 	-webkit-transform:scale(0.7);
 	-webkit-transition:all 0.4s ease-in-out;
-	float: left;
+	/*float: left;*/
 	cursor: pointer;
 	        box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-
+    display: table-cell;
 }
 
 .watch.active {
@@ -136,12 +307,6 @@ position: absolute;
 	margin:  20px auto;
 	border-radius: 50%;
 }
-.ptr {
-	height: 352px;
-	width: 251px;
-	background-image: url("../img/ptr.png");
-}
-
 
 .preview-zone {
    -moz-box-sizing:    border-box;
@@ -191,17 +356,3 @@ position: absolute;
     background-image: url("../img/144nb.png");
 
 }
-
-/* tmp */
-           .dither {
-                visibility:hidden;
-            }
-
-            .hiddenCanvas{
-
-            }    
-            #drop {
-                height: 100px;
-                width : 100px;
-                background-color: red;
-            }
