@@ -1,4 +1,4 @@
-var templates = {
+var Templates = {
 
     templates:{},
 
@@ -46,7 +46,6 @@ var templates = {
 
 };  
 
-
 var GlobalDebug = (function () {
     var savedConsole = console;
     return function(debugOn,suppressAll){
@@ -66,5 +65,15 @@ var GlobalDebug = (function () {
         } else {
             console = savedConsole;
         }
+    }
+})();
+
+var MakeUniqueId = (function () {
+    return function(number){
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for( var i=0; i < number; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
     }
 })();

@@ -27,9 +27,6 @@ $ds = "/";
 $storeFolder = "uploads";
 
 
-
-
-
 if (!empty($_POST['imgBase64'])) {
 	define('UPLOAD_DIR', '../../public/uploads/');
 	$img = $_POST['imgBase64'];

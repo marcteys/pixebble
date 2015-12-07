@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8" />
 	<title>Pixeble</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -9,6 +10,9 @@
 	<script src="assets/lib/colors.js"></script>
 	<script src="assets/lib/dropzone/dropzone.min.js"></script>
 	<script src="app/utils.js"></script>
+	<script src="app/controllers/users.js"></script>
+	<script src="app/controllers/dropimage.js"></script>
+	<script src="app/controllers/gallery.js"></script>
 	<script src="app/pixebble.js"></script>
 </head>
 <body>
@@ -22,8 +26,8 @@
 			    <h4>Settings</h4>
 			 	<h5>Dither algorithm</h5>
 			 	<div class="dither-type-select">
-				 	<select>
-						<option value="nearest">Nearest</option>
+				 	<select class="dither-select" >
+						<option value="nearest" selected>Nearest</option>
 						<option value="ordered">Ordered</option>
 						<option value="atkinson">Atkinson</option>
 						<option value="errorDiffusion">Error Diffusion</option>
@@ -31,14 +35,16 @@
 			 	</div>
 
 			 	<h5>Unique Identifier</h5>
-			 	<div class="user-id-container saved">
-			 		<input type="text" class="user-id" value="UI-DSL-584" /><button class="new-id">New</button>
+			 	<div class="user-id-container">
+			 		<input type="text" class="user-id" value="" /><button class="new-id">New</button>
 			 	</div>
 			 	<h4 class="margin-top">Recent uploads</h4>
 			 	<div class="recent-uploads">
-			 		
+			 		<div class="thumbnail">
+			 			<a class="thumbnail-cross">delete</a>
+			 			<img src="public/uploads/last.png">
+			 		</div>	
 			 	</div>
-	
 			</div>
 		</div>
 		<div class="container">
@@ -55,7 +61,11 @@
 			var settings = {
 				debug: true,
 				watchzone: $(".watchzone"),
-				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}]
+				ditherAlgorithmSelect : $('.dither-select'),
+				userIdInput : $('.user-id'),
+				userIdNew : $('.new-id'),
+				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}],
+
 			};
 			Pixebble.init(settings);
 		});

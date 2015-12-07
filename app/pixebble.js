@@ -3,23 +3,23 @@ var Pixebble = {
 	options : null,
 	dropzone: null,
 	activeWatch : null,
-	ditherAlgorithm : "nearest",
 
 	init: function(settings) {
 		GlobalDebug(settings.debug);
 		console.log("Pixebble: init");
 		var that = this;
 		this.options = settings;
-		templates.loadTemplates(['watch'], function() {
+		Templates.loadTemplates(['watch'], function() {
 			that.addTemplate();
 		});
+		UsersManager.init(settings);
 	},
 
-	addTemplate: function(){
+	addTemplate: function() {
 		var that = this;
 		this.options.watches.forEach(function(data, index) {
 			console.log("Template: Set template for element '" + data.name + "'");
-			var $watchTemplate = $(templates.get("watch", data));
+			var $watchTemplate = $(Templates.get("watch", data));
 			if(data.active) activeWatch = $watchTemplate;
 			that.options.watchzone.append($watchTemplate);
 			$watchTemplate[0].addEventListener("click", function() {
@@ -42,7 +42,7 @@ var Pixebble = {
 		} 
 	},
 
-	initDropzone : function() {
+	initDropzone: function() {
 		console.log("Dropzone: init");
 		var that = this;
 		var dropzoneOptions = {
@@ -118,7 +118,7 @@ var Pixebble = {
 				$(that.dropzone.previewsContainer).children().first().remove()
 			var options = {
 				"step": 1,
-				"algorithm": that.ditherAlgorithm, // nearest // ordered // atkinson // errorDiffusion
+				"algorithm": that.options.ditherAlgorithmSelect.val(),
 				"className": "dithered",
 				"palette": pebbleColors()
 			};
@@ -127,17 +127,19 @@ var Pixebble = {
 		});
 	},
 
-	ditherImage : function(element, options) {
+	ditherImage: function(element, options) {
 		var that = this;
 		new DitherJS(element.get(0), options, that.postImage);
 	},
 
 	postImage: function(dataUrl) {
+		var that = this;
 		$.ajax({
 			  type: "POST",
 			  url: "app/controllers/upload.php",
 			  data: { 
-				 imgBase64: dataUrl
+				 imgBase64: dataUrl,
+				 userId: that.options.userIdInput.val()
 			  }
 			});
 	}
