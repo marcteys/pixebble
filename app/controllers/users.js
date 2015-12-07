@@ -1,14 +1,11 @@
 var UsersManager = {
 
-	options:null,
-
 	init:function(settings) {
-		this.options = settings;
 		if(window.location.hash) {
-			this.options.userIdInput.val(window.location.hash.substr(1));
+			Pixebble.options.userIdInput.val(window.location.hash.substr(1));
 			this.setLocalUserId(window.location.hash.substr(1));
 		} else if(this.getLocalUserId()) {
-			this.options.userIdInput.val(this.getLocalUserId());
+			Pixebble.options.userIdInput.val(this.getLocalUserId());
 		} else {
 			this.makeUniqueUserId(this);
 		}
@@ -17,8 +14,8 @@ var UsersManager = {
 
 	bindUserInput: function() {
 		var that = this;
-		this.options.userIdInput.bind("input",function(){that.changeUserIdInput(this, that)}, false);
-		this.options.userIdNew.bind("click",function(){that.makeUniqueUserId(that)}, false);
+		Pixebble.options.userIdInput.bind("input",function(){that.changeUserIdInput(this, that)}, false);
+		Pixebble.options.userIdNew.bind("click",function(){that.makeUniqueUserId(that)}, false);
 	},
 
 	changeUserIdInput:function(element, that) {
@@ -30,8 +27,8 @@ var UsersManager = {
 	makeUniqueUserId: function(that) {
 		var unique = MakeUniqueId(6);
 		console.log("Users: Make unique id " + unique);
-		that.options.userIdInput.val(unique);
-		this.options.userIdInput.trigger("input");
+		Pixebble.options.userIdInput.val(unique);
+		Pixebble.options.userIdInput.trigger("input");
 	},
 
 	getLocalUserId: function() {
@@ -42,7 +39,7 @@ var UsersManager = {
 	},
 
 	setLocalUserId: function(userId) {
-		console.log("Users: Set user id " + userId);
+		console.log("Users: Save user id " + userId);
 		localStorage.setItem('userId', userId);
 	}
 };
