@@ -27,25 +27,4 @@ var Pixebble = {
 		ImagesUpload.init();
 	},
 
-	displayTip: function(data) {
-		var removeDelay = data.delay || 4500;
-		var $tipTemplate = $(Templates.get("tip", data));
-		this.options.mainContainer.append($tipTemplate);
-
-		$tipTemplate.click(function() {
-			$tipTemplate.removeClass("active");
-				setTimeout(function(){
-					$tipTemplate.remove();
-				},400);
-		});
-		setTimeout(function(){
-			$tipTemplate.addClass("active");
-			setTimeout(function(){
-				$tipTemplate.removeClass("active");
-				setTimeout(function(){
-					$tipTemplate.remove();
-				},400);
-			},removeDelay);
-		},100);
-	}
 };

@@ -35,7 +35,7 @@ var ImagesUpload = {
 				var targetRadio = this.options.thumbnailWidth / this.options.thumbnailHeight;
 				if(imageRatio !== targetRadio) {
 					console.log("dropzone: remove file", imageRatio, targetRadio);
-					Pixebble.displayTip({type:"error",icon:"×",text:"The image must be 180×180 or an equivalent ratio"});
+					TipManager.createTip({type:"error",icon:"×",text:"The image must be 180×180 or an equivalent ratio"});
 					file.status = "lol";
 					this.removeFile(file);
 				}
@@ -92,7 +92,7 @@ var ImagesUpload = {
 			};
 			if(that.activeWatch.data('title') == "pog") ditherOptions.palette = [[0,0,0],[255,255,255]];
 			that.ditherImage(returnedElem.find('img'), ditherOptions);
-			Pixebble.displayTip({type:"success",icon:"&#10004;",text:"Image uploaded", delay : 1500});
+			TipManager.createTip({type:"success",icon:"&#10004;",text:"Image uploaded", delay : 1500});
 		});
 	},
 
