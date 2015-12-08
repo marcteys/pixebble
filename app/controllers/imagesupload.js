@@ -52,17 +52,17 @@ var ImagesUpload = {
 		this.dropzone.on("drop", function(file) {
 			console.log("Dropzone: drop");
 			$('.dropzone').css({"z-index": "3" });
-			activeWatch.find('.preview-zone').removeClass('active');
+			that.activeWatch.find('.preview-zone').removeClass('active');
 		});
 		this.dropzone.on("dragenter", function() {
 			console.log("Dropzone: dragenter");
 			$('.dropzone').css({"z-index": "10" });
-			activeWatch.find('.preview-zone').addClass('active');
+			that.activeWatch.find('.preview-zone').addClass('active');
 		});
 		this.dropzone.on("dragleave", function() {
 			console.log("Dropzone: dragleave");
 			$('.dropzone').css({"z-index": "3" });
-			activeWatch.find('.preview-zone').removeClass('active');
+			that.activeWatch.find('.preview-zone').removeClass('active');
 		});
 		this.dropzone.on("canceled", function() {
 			console.log("Dropzone: canceled");
@@ -70,9 +70,10 @@ var ImagesUpload = {
 		this.dropzone.on("error", function() {
 			console.log("Dropzone: Error when adding file");
 		});
-		this.dropzone.on("complete", function() {
-			console.log("Dropzone: Upload successfull");
+		this.dropzone.on("success", function(file, response) {
+			console.log("Dropzone: Upload successfull, php response : ", response);
 		});
+
 		this.dropzone.on("sending", function(file) { //addedfile or //complete
 			console.log("Dropzone: File added with the status ", file.status);
 			 if(file.status === "error") {
@@ -109,17 +110,20 @@ var ImagesUpload = {
 
 	ditherImage: function(element, ditherOptions) {
 		var that = this;
-		new DitherJS(element.get(0), ditherOptions, that.postImage);
+		new DitherJS(element.get(0), ditherOptions, function(dataUrl){
+			that.postImage(dataUrl, that);
+		});
 	},
 
-	postImage: function(dataUrl) {
-		var that = this;
+	postImage: function(dataUrl, that) {
 		$.ajax({
 			  type: "POST",
 			  url: "app/controllers/upload.php",
 			  data: { 
 				 imgBase64: dataUrl,
-				 userId: Pixebble.options.userIdInput.val()
+				 userId: UsersManager.getLocalUserId(),
+				 width: that.dropzone.options.thumbnailWidth,
+				 height: that.dropzone.options.thumbnailHeight,
 			  }
 			});
 	}

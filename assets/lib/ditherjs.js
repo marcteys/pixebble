@@ -42,7 +42,7 @@ var DitherJS = function DitherJS(selector,opt,callback) {
             var start_time = Date.now();
             var result = self._dither(el);
             console.log('DitherJs: Microtime: ', Date.now()-start_time );
-            if(typeof callback !== "undefined" ) callback(self.base64Image);
+            if(typeof callback !== "undefined" ) callback(self.base64Image, arguments[2]);
         }
     };
 

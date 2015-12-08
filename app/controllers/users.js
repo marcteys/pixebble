@@ -25,7 +25,7 @@ var UsersManager = {
 	},
 
 	makeUniqueUserId: function(that) {
-		var unique = MakeUniqueId(6);
+		var unique = MakeUniqueId(6).toUpperCase();
 		console.log("Users: Make unique id " + unique);
 		Pixebble.options.userIdInput.val(unique);
 		Pixebble.options.userIdInput.trigger("input");
@@ -39,7 +39,7 @@ var UsersManager = {
 	},
 
 	setLocalUserId: function(userId) {
-		console.log("Users: Save user id " + userId);
-		localStorage.setItem('userId', userId);
+		console.log("Users: Save user id " + userId.toUpperCase());
+		localStorage.setItem('userId', userId.toUpperCase());
 	}
 };
