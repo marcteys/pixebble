@@ -325,9 +325,101 @@ button.new-id:focus {
 	width: calc(100% - 350px);
 
 }
+.tip {
+	position: absolute;
+	width: 350px;
+	height: 50px;
+	left: calc(50% - 175px);
+	background: white;
+	border-radius: 4px;
+	text-align: center;
+	overflow: hidden;
+	box-shadow:  0 1px 2px rgba(0,0,0,.1);
+	opacity: 0;
+	top: -50px;
+	transition: all 300ms ease;
+	z-index: 20;
+
+	/* 
+	.tip.hidden {
+	-webkit-animation-direction: reverse; 
+    animation-direction: reverse;
+
+}
+
+@-webkit-keyframes displayPopup {
+    0% {
+		top: -50px;
+        opacity: 0;
+    }
+    100% {
+		top: 10%;
+        opacity: 1;
+    }
+}
+@keyframes displayPopup {
+    0% {
+		top: -50px;
+        opacity: 0;
+    }
+    100% {
+		top: 10%;
+        opacity: 1;
+    }
+}
+*/
+
+}
+.tip.active {
+	opacity: 1;
+	top: 10%;
+}
+
+.tip span {
+	display: block;
+	float: left;
+	color: white;
+	line-height: 53px;
+	background-color: #ff4700;
+	font-size: 25px;
+	font-weight: 400;
+	width: 50px;
+	margin-top: -3px;
+}
+
+.tip .text {
+	line-height: 46px;
+	text-align: center;
+	height: 50px;
+	float: left;
+	padding: 0 7px;
+	width: calc(100% - 14px - 50px);
+	font-size: 14px;
+}
+.tip .text p {
+	color: #444;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+	margin: 0;
+}
+.tip.error span{
+	background-color: #E5171F;
+}
+.tip.info span{
+	background-color: #FF4700;
+}
+.tip.success span{
+	background-color: #00B293;
+}
+.tip.neutral span{
+	background-color: white;
+	color: #FF4700;
+}
 
 .dropzone {
-position: absolute;
+	position: absolute;
   z-index: 3;
   width: 100%;
   height: 100%;

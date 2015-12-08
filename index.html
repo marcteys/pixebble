@@ -62,12 +62,12 @@
 		$(document).ready(function() {
 			var settings = {
 				debug: true,
+				mainContainer: $(".container"),
 				watchzone: $(".watchzone"),
 				ditherAlgorithmSelect : $('.dither-select'),
 				userIdInput : $('.user-id'),
 				userIdNew : $('.new-id'),
 				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}],
-
 			};
 			Pixebble.init(settings);
 		});
