@@ -270,13 +270,21 @@ button.new-id:focus {
   margin-top: 20px;
   background: rgb(250,250,250);
   padding: 5px;
+      overflow-y: scroll;
+}
+.recent-uploads p {
+	padding: 10px;
+    color: #575757;
+    line-height: 22px;
+    text-align: center;
+
 }
 
 .recent-uploads .thumbnail {
 	margin: 10px;
 	background: black;
-	height: 80px;
-	width: 80px;
+	height: 75px;
+	width: 75px;
 	display: block;
 	float: left;
 	border-radius: 7px;

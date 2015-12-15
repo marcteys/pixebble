@@ -42,11 +42,7 @@
 			 	</div>
 			 	<h4 class="margin-top">Recent uploads</h4>
 			 	<div class="recent-uploads">
-			 		<div class="thumbnail">
-			 			<a class="thumbnail-cross">delete</a>
-			 			<img src="public/uploads/last.png">
-			 		</div>
-			 		There are no recent uplaods
+			 		<p>Loading...</p>
 			 	</div>
 			</div>
 		</div>
@@ -64,10 +60,11 @@
 			var settings = {
 				debug: true,
 				mainContainer: $(".container"),
+				galleryContainer: $('.recent-uploads'),
 				watchzone: $(".watchzone"),
 				ditherAlgorithmSelect : $('.dither-select'),
-				userIdInput : $('.user-id'),
-				userIdNew : $('.new-id'),
+				userIdInput: $('.user-id'),
+				userIdNew: $('.new-id'),
 				watches: [{name : 'pog',width : 144,height : 168}, {name : 'ptr',width : 180,height : 180, active : 'active'}, {name : 'pt', width : 144,height : 168}],
 			};
 			Pixebble.init(settings);

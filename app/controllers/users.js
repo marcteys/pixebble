@@ -41,5 +41,6 @@ var UsersManager = {
 	setLocalUserId: function(userId) {
 		console.log("Users: Save user id " + userId.toUpperCase());
 		localStorage.setItem('userId', userId.toUpperCase());
+		Gallery.getImages(userId);
 	}
 };

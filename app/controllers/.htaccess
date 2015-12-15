@@ -1,0 +1,7 @@
+# For grabbing all users
+RewriteEngine on
+RewriteRule ^users\.json get_images.php [L]
+
+# For grabbing one particular user
+#RewriteEngine on
+#RewriteRule users.json get_images.php?user=$1 [L]

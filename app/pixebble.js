@@ -7,10 +7,11 @@ var Pixebble = {
 		console.log("Pixebble: init");
 		var that = this;
 		this.options = settings;
-		Templates.loadTemplates(['watch', 'tip'], function() {
+		Templates.loadTemplates(['watch', 'tip', 'galleryElement'], function() {
 			that.addTemplate();
+			Gallery.getImages(UsersManager.getLocalUserId());
+			UsersManager.init();
 		});
-		UsersManager.init();
 	},
 
 	addTemplate: function() {
