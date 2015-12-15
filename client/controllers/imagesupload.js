@@ -18,7 +18,7 @@ var ImagesUpload = {
 			parallelUploads: 1,
 			clickable: '.trigger',
 			dictDefaultMessage: "Drop ici mec",
-			url: "server/controllers/upload.php", 
+			url: "server/images/", 
 			resize: function(file) {
 				var resizeInfo = {
 					srcX: 0,
@@ -117,7 +117,7 @@ var ImagesUpload = {
 	postImage: function(dataUrl, that) {
 		$.ajax({
 			  type: "POST",
-			  url: "server/controllers/upload.php",
+			  url: "server/images/",
 			  data: { 
 				 imgBase64: dataUrl,
 				 userId: UsersManager.getLocalUserId(),
@@ -125,7 +125,8 @@ var ImagesUpload = {
 				 height: that.dropzone.options.thumbnailHeight,
 			  },
 			  success : function(response) {
-			  	Gallery.addImage(JSON.parse(response));
+			  	console.log(response);
+			  	//Gallery.addImage(JSON.parse(response));
 			  }
 			});
 	}

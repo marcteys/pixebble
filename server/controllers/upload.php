@@ -27,17 +27,4 @@ if (!empty($_POST['imgBase64']) && !empty($_POST['userId'])) {
     echo json_encode($data);
 
 }
-
-function uploadImageAs8BitPNG($data, $destination, $width, $height) {
- 	$srcimage = imagecreatefromstring($data);
-    $img = imagecreatetruecolor($width, $height);
-    $bga = imagecolorallocatealpha($img, 0, 0, 0, 127);
-    imagecolortransparent($img, $bga);
-    imagefill($img, 0, 0, $bga);
-    imagecopy($img, $srcimage, 0, 0, 0, 0, $width, $height);
-    imagetruecolortopalette($img, false, 255);
-    imagesavealpha($img, true);
-    imagepng($img, $destination);
-    imagedestroy($img);
-}
  ?>

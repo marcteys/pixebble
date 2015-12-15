@@ -5,6 +5,7 @@ var Gallery = {
 	getImages:function(user) {
 		var that = this;
 		this.currentUser = user;
+		/*
 		$.ajax({
 		   url:'server/controllers/users.json',
 		   data: "user="+user,
@@ -12,7 +13,7 @@ var Gallery = {
 		   success:function(response){
 		      that.insertImages(JSON.parse(response));
 		   }
-		});
+		});*/
 	},
 
 	insertImages: function (response) {
