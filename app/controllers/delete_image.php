@@ -1,9 +1,11 @@
 <?php 
 if(!empty($_POST['name'])) {
-	$name = $_POST['name'] .'.png';
-	$dir = '../../public/uploads/';
-	if (exif_imagetype($dir . $name) == IMAGETYPE_PNG) {
-			unlink($dir . $name);
+	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+		$name = $_POST['name'] .'.png';
+		$dir = '../../public/uploads/';
+		if (exif_imagetype($dir . $name) == IMAGETYPE_PNG) {
+				unlink($dir . $name);
+		}
 	}
 }
 ?>
