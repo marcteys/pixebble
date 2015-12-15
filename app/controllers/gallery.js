@@ -24,7 +24,7 @@ var Gallery = {
 			} else {
 				var $galleryElement = $(Templates.get("galleryElement", data));
 				Pixebble.options.galleryContainer.append($galleryElement);
-				$galleryElement.on("click", function(){ that.clickThumbnailImage($galleryElement); });
+				$galleryElement.on("click", function(e){ that.clickThumbnailImage(e,$galleryElement); });
 			}
 		});
 	},
@@ -33,7 +33,7 @@ var Gallery = {
 		var that = this;
 		var $galleryElement = $(Templates.get("galleryElement",imageData));
 		Pixebble.options.galleryContainer.append($galleryElement);
-		$galleryElement.on("click", function(){ that.clickThumbnailImage($galleryElement); });
+		$galleryElement.on("click", function(e){ that.clickThumbnailImage(e,$galleryElement); });
 	},
 
 	deleteImage: function(imageName, deleteAll) {
@@ -51,10 +51,12 @@ var Gallery = {
 		}
 	},
 
-	clickThumbnailImage: function(thumbnail) {
+	clickThumbnailImage: function(e,thumbnail) {
+		if($(e.target).is('a'))
+			return;
+
 		var imageName = thumbnail.data("name");
 		var userName = thumbnail.data("user");
-
 		$.ajax({
 		   url:'app/controllers/rename_image.php',
 		   type:'POST',
