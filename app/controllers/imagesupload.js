@@ -1,7 +1,7 @@
 var ImagesUpload = {
 
 	dropzone: null,
-	activeWatch : null,
+	activeWatch: null,
 
 	init: function(){
 		this.initDropzone();
@@ -11,13 +11,13 @@ var ImagesUpload = {
 		console.log("Dropzone: init");
 		var that = this;
 		var dropzoneOptions = {
-			previewTemplate : '<div class="dz-image-preview"><img data-dz-thumbnail src="" /></div>',
-			thumbnailWidth : 180,
-			thumbnailHeight : 180,
-			maxFilesize : 1,
-			parallelUploads : 1,
-			clickable : '.trigger',
-			dictDefaultMessage : "Drop ici mec",
+			previewTemplate: '<div class="dz-image-preview"><img data-dz-thumbnail src="" /></div>',
+			thumbnailWidth: 180,
+			thumbnailHeight: 180,
+			maxFilesize: 1,
+			parallelUploads: 1,
+			clickable: '.trigger',
+			dictDefaultMessage: "Drop ici mec",
 			url: "app/controllers/upload.php", 
 			resize: function(file) {
 				var resizeInfo = {
@@ -34,10 +34,11 @@ var ImagesUpload = {
 				var imageRatio = file.width / file.height;
 				var targetRadio = this.options.thumbnailWidth / this.options.thumbnailHeight;
 				if(imageRatio !== targetRadio) {
-					console.log("dropzone: remove file", imageRatio, targetRadio);
-					TipManager.createTip({type:"error",icon:"×",text:"The image must be 180×180 or an equivalent ratio"});
-					file.status = "lol";
+					console.log("Dropzone: Remove file (image ratio is " + imageRatio +" instead of "+ targetRadio + ")");
+					TipManager.createTip({type:"error",icon:"×",text:"The image must be "+this.options.thumbnailWidth+"×"+this.options.thumbnailHeight+" or an equivalent ratio"});
 					this.removeFile(file);
+				} else {
+					that.imageProcess(file);
 				}
 				return resizeInfo;
 			}
@@ -48,7 +49,7 @@ var ImagesUpload = {
 		this.bindDropZoneEvents();
 	},
 
-	bindDropZoneEvents : function() {
+	bindDropZoneEvents: function() {
 		var that = this;
 		this.dropzone.on("drop", function(file) {
 			console.log("Dropzone: drop");
@@ -71,29 +72,26 @@ var ImagesUpload = {
 		this.dropzone.on("error", function() {
 			console.log("Dropzone: Error when adding file");
 		});
-		this.dropzone.on("success", function(file, response) {
-			console.log("Dropzone: Upload successfull, php response : ", response);
+		this.dropzone.on("complete", function(file) { //addedfile or //complete
+			console.log("Dropzone: File added with the status", file.status);
 		});
+	},
 
-		this.dropzone.on("sending", function(file) { //addedfile or //complete
-			console.log("Dropzone: File added with the status ", file.status);
-			 if(file.status === "error") {
-			 	return;
-			 }
-			 var returnedElem = $(file.previewElement);
-			 if($(that.dropzone.previewsContainer).children().length > 1)
-				$(that.dropzone.previewsContainer).children().first().remove()
+	imageProcess: function(file) {
+		var that = this;
+		var returnedElem = $(file.previewElement);
+		 if($(that.dropzone.previewsContainer).children().length > 1)
+			$(that.dropzone.previewsContainer).children().first().remove()
 
-			var ditherOptions = {
-				"step": 1,
-				"algorithm": Pixebble.options.ditherAlgorithmSelect.val(),
-				"className": "dithered",
-				"palette": pebbleColors()
-			};
-			if(that.activeWatch.data('title') == "pog") ditherOptions.palette = [[0,0,0],[255,255,255]];
-			that.ditherImage(returnedElem.find('img'), ditherOptions);
-			TipManager.createTip({type:"success",icon:"&#10004;",text:"Image uploaded", delay : 1500});
-		});
+		var ditherOptions = {
+			"step": 1,
+			"algorithm": Pixebble.options.ditherAlgorithmSelect.val(),
+			"className": "dithered",
+			"palette": pebbleColors()
+		};
+		if(that.activeWatch.data('title') == "pog") ditherOptions.palette = [[0,0,0],[255,255,255]];
+		that.ditherImage(returnedElem.find('img'), ditherOptions);
+		TipManager.createTip({type:"success",icon:"&#10004;",text:"Image uploaded", delay: 1500});
 	},
 
 	clickWatch: function(event, element) {
@@ -125,6 +123,9 @@ var ImagesUpload = {
 				 userId: UsersManager.getLocalUserId(),
 				 width: that.dropzone.options.thumbnailWidth,
 				 height: that.dropzone.options.thumbnailHeight,
+			  },
+			  success : function(response) {
+			  	Gallery.addImage(JSON.parse(response));
 			  }
 			});
 	}

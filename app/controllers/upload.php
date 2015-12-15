@@ -19,8 +19,13 @@ if (!empty($_POST['imgBase64']) && !empty($_POST['userId'])) {
 	$destination = UPLOAD_DIR . $id. '.png';
 	uploadImageAs8BitPNG($data, $destination, $width, $height);
 
-    $destination = UPLOAD_DIR . $id.'-' .time() . '.png';
+	$timeId = $id.'-' .time();
+    $destination = UPLOAD_DIR . $timeId . '.png';
     uploadImageAs8BitPNG($data, $destination, $width, $height);
+
+    $data = array("name"=>$timeId, "user" => $id);
+    echo json_encode($data);
+
 }
 
 function uploadImageAs8BitPNG($data, $destination, $width, $height) {
