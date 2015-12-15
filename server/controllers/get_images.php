@@ -1,5 +1,5 @@
 <?php
-	$imageFolder = "../../public/uploads/";
+	$imageFolder = "../../data/uploads/";
 	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		if(!empty($_GET['user'])) {
 			$user = $_GET['user'];

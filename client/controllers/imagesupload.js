@@ -18,7 +18,7 @@ var ImagesUpload = {
 			parallelUploads: 1,
 			clickable: '.trigger',
 			dictDefaultMessage: "Drop ici mec",
-			url: "app/controllers/upload.php", 
+			url: "server/controllers/upload.php", 
 			resize: function(file) {
 				var resizeInfo = {
 					srcX: 0,
@@ -117,7 +117,7 @@ var ImagesUpload = {
 	postImage: function(dataUrl, that) {
 		$.ajax({
 			  type: "POST",
-			  url: "app/controllers/upload.php",
+			  url: "server/controllers/upload.php",
 			  data: { 
 				 imgBase64: dataUrl,
 				 userId: UsersManager.getLocalUserId(),

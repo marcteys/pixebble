@@ -1,5 +1,5 @@
 <?php
-define('UPLOAD_DIR', '../../public/uploads/');
+define('UPLOAD_DIR', '../../data/uploads/');
 
 if (!empty($_POST['imgBase64']) && !empty($_POST['userId'])) {
 

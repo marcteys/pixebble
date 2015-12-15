@@ -6,7 +6,7 @@ var Gallery = {
 		var that = this;
 		this.currentUser = user;
 		$.ajax({
-		   url:'app/controllers/users.json',
+		   url:'server/controllers/users.json',
 		   data: "user="+user,
 		   method:'GET',
 		   success:function(response){
@@ -40,7 +40,7 @@ var Gallery = {
 		var that = this;
 		if(confirm("Delete Image ?")) {
 			$.ajax({
-			   url:'app/controllers/delete_image.php',
+			   url:'server/controllers/delete_image.php',
 			   type:'POST',
 			   data: {name : imageName },
 			   success:function(response){
@@ -58,12 +58,12 @@ var Gallery = {
 		var imageName = thumbnail.data("name");
 		var userName = thumbnail.data("user");
 		$.ajax({
-		   url:'app/controllers/rename_image.php',
+		   url:'server/controllers/rename_image.php',
 		   type:'POST',
 		   data: {name: imageName, user: userName },
 		   success: function(response){
 			var imageElement = document.createElement("img");
-			imageElement.setAttribute("src", "public/uploads/"+imageName+".png");
+			imageElement.setAttribute("src", "data/uploads/"+imageName+".png");
 			$(ImagesUpload.dropzone.previewsContainer).html(imageElement);
 		   }
 		});

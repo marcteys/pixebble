@@ -8,7 +8,7 @@ var Templates = {
 
         var loadTemplate = function (index) {
             var name = names[index];
-            $.get('app/templates/' + name + '.html', function (data) {
+            $.get('client/templates/' + name + '.html', function (data) {
                 that.templates[name] = data;
                 console.log('Template: Loading template: ' + name);
                 index++;
