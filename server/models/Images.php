@@ -1,8 +1,7 @@
 <?php
-
 class Images{
 
-/*
+	/*
     function getImages(){
         return self::makeData();
     }*/
@@ -17,11 +16,11 @@ class Images{
 					$withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
 					$timestamp =  substr($withoutExt, -10);
 					$user = trim($withoutExt, "-".$timestamp);
-				    $files[] = array("name" => $filename,  "user"=> $user, "timestamp" => $timestamp, "uploadDir" => UPLOAD_DIR);
+				    $files[] = array("name" => $filename,  "user"=> $user, "timestamp" => $timestamp, "uploadDir" => UPLOAD_DIR_ABS);
 			  }
 			}
 			if($files == null)  $files[] = array("files" => null);
-			sort($files);
+			else sort($files);
 			return $files;
 	 }
 
@@ -39,8 +38,7 @@ class Images{
 				    	$files[] = array("name" => $withoutExt, "user" => $user, "timestamp" => $timestamp);
 			  }
 			}
-
-			sort($files);
+			if($files == null) $files[] = array("name" => null,  "user"=> $user, "timestamp" => null, "uploadDir" => null);
 			return $files;
 	 }
 
@@ -68,10 +66,23 @@ class Images{
 		    $destination = UPLOAD_DIR . $timeId . '.png';
 		    uploadImageAs8BitPNG($imgData, $destination, $width, $height);
 
-		   	return array("name" => $timeId,  "user"=> $id, "timestamp" => $timestamp, "uploadDir" => UPLOAD_DIR);
-
+		   	return array("name" => $timeId,  "user"=> $id, "timestamp" => $timestamp, "uploadDir" => UPLOAD_DIR_ABS);
 		}
+	 }
 
+	 function setActive($name) {
+	 	$user = explode("-",$name)[0];
+		if (exif_imagetype(UPLOAD_DIR . $name . '.png') == IMAGETYPE_PNG) {
+			try {
+				unlink(UPLOAD_DIR . $user . '.png');
+			} catch(Exeption $e){ }
+			try {
+				copy(UPLOAD_DIR . $name . '.png',UPLOAD_DIR . $user .'.png');
+			} catch(Exeption $e){ }
+			return array("name" => $name . '.png',  "user"=> $user, "timestamp" => explode("-",$name)[1], "uploadDir" => UPLOAD_DIR_ABS);
+		} else {
+			return array("name" => null,  "user"=> $user, "timestamp" => null, "uploadDir" => null);
+		}
 	 }
 
 }

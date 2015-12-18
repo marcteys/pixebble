@@ -5,22 +5,21 @@ var Gallery = {
 	getImages:function(user) {
 		var that = this;
 		this.currentUser = user;
-		/*
+		
 		$.ajax({
-		   url:'server/controllers/users.json',
-		   data: "user="+user,
+		   url:'server/images/search?user='+user,
 		   method:'GET',
 		   success:function(response){
-		      that.insertImages(JSON.parse(response));
+		    that.insertImages(response);
 		   }
-		});*/
+		});
 	},
 
 	insertImages: function (response) {
 		var that = this;
 		Pixebble.options.galleryContainer.html('');
-		$.each(response, function(i,data) {
-			if(data.name === null ) {
+		$.each(response.data, function(i,data) {
+			if(data.name == null ) {
 				Pixebble.options.galleryContainer.html('<p>There are no recent uplaods for the user "' + data.user + '"</p>');
 			} else {
 				var $galleryElement = $(Templates.get("galleryElement", data));
@@ -55,16 +54,14 @@ var Gallery = {
 	clickThumbnailImage: function(e,thumbnail) {
 		if($(e.target).is('a'))
 			return;
-
 		var imageName = thumbnail.data("name");
 		var userName = thumbnail.data("user");
 		$.ajax({
-		   url:'server/controllers/rename_image.php',
-		   type:'POST',
-		   data: {name: imageName, user: userName },
+		   url:'server/images/'+imageName,
+		   type:'PUT',
 		   success: function(response){
 			var imageElement = document.createElement("img");
-			imageElement.setAttribute("src", "data/uploads/"+imageName+".png");
+			imageElement.setAttribute("src", response.data.uploadDir + response.data.name);
 			$(ImagesUpload.dropzone.previewsContainer).html(imageElement);
 		   }
 		});

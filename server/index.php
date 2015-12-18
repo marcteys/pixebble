@@ -17,6 +17,7 @@ $response['data'] = NULL;
 
 $request = null;
 $action = null;
+$success = false;
 
 if(!empty($_GET['action'])) {
 	$action = $_GET['action'];
@@ -31,16 +32,26 @@ if( strcasecmp($_GET['method'],'images') == 0){
 	        case 'POST':
 	        	$response['data'] = $images->postImage($_POST);
 	            break;
-	        case 'GET':
-	       		if($action == "search") $response['data'] = $images->getImage($_GET['user']);
-	       		if($action == null) $response['data'] = $images->getImages();
-	            break;
 	        case 'PUT':
+	        	if(!empty($action)) {
+	        		$response['data'] = $images->setActive($action);
+	        		$success = true;
+	        	}
+	            break;
+	         case 'GET':
+	       		if($action == "search") {
+	       			$response['data'] = $images->getImage($_GET['user']);
+	       			$success = true;
+	       		}
+	       		if($action == null) {
+	       			$response['data'] = $images->getImages();
+	       			$success = true;
+	       		}
 	            break;
 	        default:
 	            break;
 	}
-	if($response['data'] == null ) $response = setResponse($response,$api_response_code,2);
+	if(!$success) $response = setResponse($response,$api_response_code,3);
 }
 
 deliver_response($response);
