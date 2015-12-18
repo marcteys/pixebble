@@ -32,6 +32,7 @@ var Gallery = {
 	addImage: function(imageData) {
 		var that = this;
 		var $galleryElement = $(Templates.get("galleryElement",imageData));
+ 		if (Pixebble.options.galleryContainer.find("p").length > 0) Pixebble.options.galleryContainer.find("p").remove();
 		Pixebble.options.galleryContainer.append($galleryElement);
 		$galleryElement.on("click", function(e){ that.clickThumbnailImage(e,$galleryElement); });
 	},
