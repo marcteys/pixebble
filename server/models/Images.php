@@ -85,4 +85,11 @@ class Images{
 		}
 	 }
 
+	 function deleteImage($name) {
+	 	$name .= '.png';
+		if (exif_imagetype(UPLOAD_DIR . $name) == IMAGETYPE_PNG) {
+				unlink(UPLOAD_DIR . $name);
+		}
+	 }
+
 }

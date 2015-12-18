@@ -40,9 +40,8 @@ var Gallery = {
 		var that = this;
 		if(confirm("Delete Image ?")) {
 			$.ajax({
-			   url:'server/controllers/delete_image.php',
-			   type:'POST',
-			   data: {name : imageName },
+			   url:'server/images/'+imageName,
+			   type:'DELETE',
 			   success:function(response){
 			   	console.log("Gallery: Image deleted");
 			   	that.getImages(that.currentUser);

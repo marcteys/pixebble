@@ -125,8 +125,7 @@ var ImagesUpload = {
 				 height: that.dropzone.options.thumbnailHeight,
 			  },
 			  success : function(response) {
-			  	console.log(response);
-			  	//Gallery.addImage(JSON.parse(response));
+			  	Gallery.addImage(response.data);
 			  }
 			});
 	}

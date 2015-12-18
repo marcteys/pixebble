@@ -31,10 +31,17 @@ if( strcasecmp($_GET['method'],'images') == 0){
 	switch ($_SERVER['REQUEST_METHOD']) {
 	        case 'POST':
 	        	$response['data'] = $images->postImage($_POST);
+	        	$success = true;
 	            break;
 	        case 'PUT':
 	        	if(!empty($action)) {
 	        		$response['data'] = $images->setActive($action);
+	        		$success = true;
+	        	}
+	            break;
+	          case 'DELETE':
+	        	if(!empty($action)) {
+	        		$response['data'] = $images->deleteImage($action);
 	        		$success = true;
 	        	}
 	            break;
