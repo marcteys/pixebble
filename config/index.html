@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pebble Slim conf</title>
+	<link rel="stylesheet" type="text/css" href="css/slate.min.css">
+	<script type="text/javascript" src="js/slate.min.js"></script>
+	<style type="text/css">
+		#userName { text-transform: uppercase; }
+	</style>
+</head>
+<body>
+
+<div class="item-container">
+  <div class="item-container-header">User Name</div>
+	<div class="item-container-content">
+        <label class="item">
+          <div class="item-input-wrapper">
+            <input type="text" class="item-input" id="userName" name="username" placeholder="Your username">
+          </div>
+        </label>
+    </div>
+
+<div class="item-container">
+  <div class="button-container">
+    <input type="button" class="item-button" value="SEND" id="submit_button">
+  </div>
+</div>
+  <script>
+  function getConfigData() {
+    //var userName = document.getElementById('userName');
+    var options = {
+      'userName': userName.value.toUpperCase(),
+    };
+    // Save for next launch
+    localStorage['userName'] = options['userName'];
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+ 
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+   // document.location = "pebblejs://close#success";
+  });
+
+  (function() {
+    var userName = document.getElementById('userName');
+    // Load any previously saved configuration, if available
+    if(localStorage['userName']) {
+      userName.value = localStorage['userName'];
+    }
+  })();
+  </script>
+
+</body>
+</html>

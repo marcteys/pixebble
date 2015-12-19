@@ -206,7 +206,7 @@ background-color:rgba(255,47,0,0.1);
 }
 
 input.user-id {
-	width: calc(50%);
+	width: calc(68%);
 	border: none;
 	background-color: transparent;
 	font: inherit;
@@ -214,7 +214,7 @@ input.user-id {
 	font-size: 15px;
 	line-height: 35px;
 	padding-left: 10px;
-	padding-right: 65px;
+	padding-right: 10px;
 	color: #212121;
 	-webkit-appearance: none;
 	-moz-appearance: none;

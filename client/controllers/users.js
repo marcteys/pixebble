@@ -1,8 +1,7 @@
 var UsersManager = {
 
 	init:function(settings) {
-		if(window.location.hash) {
-			Pixebble.options.userIdInput.val(window.location.hash.substr(1));
+		if(window.location.hash && this.userCharactersCorrect(window.location.hash.substr(1))) {
 			this.setLocalUserId(window.location.hash.substr(1));
 		} else if(this.getLocalUserId()) {
 			Pixebble.options.userIdInput.val(this.getLocalUserId());
@@ -19,9 +18,13 @@ var UsersManager = {
 	},
 
 	changeUserIdInput:function(element, that) {
-		$(element).parent().addClass('saved');
-		setTimeout(function() { $(element).parent().removeClass('saved') }, 1500);
-		that.setLocalUserId($(element).val());
+		if(that.setLocalUserId($(element).val())) {
+			$(element).parent().addClass('saved');
+			setTimeout(function() { $(element).parent().removeClass('saved') }, 1500);
+		} else {
+			console.log("Users: Must be letters only");
+			$(element).val(that.removeAllNonAlphanumeric($(element).val()));
+		}
 	},
 
 	makeUniqueUserId: function(that) {
@@ -39,8 +42,21 @@ var UsersManager = {
 	},
 
 	setLocalUserId: function(userId) {
+		if(!this.userCharactersCorrect(userId)) {
+			return false;
+		}
 		console.log("Users: Save user id " + userId.toUpperCase());
+		Pixebble.options.userIdInput.val(userId);
 		localStorage.setItem('userId', userId.toUpperCase());
 		Gallery.getImages(userId);
+		return true;
+	},
+
+	userCharactersCorrect: function(userString) {
+		return /^[a-zA-Z]+$/.test(userString);
+	},
+
+	removeAllNonAlphanumeric: function(str) {
+		return str.replace(/\s+/g, '').replace(/[^a-zA-Z-]/g, '').replace('-', '').toUpperCase();
 	}
 };
