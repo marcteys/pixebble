@@ -71,6 +71,7 @@ var ImagesUpload = {
 		});
 		this.dropzone.on("error", function() {
 			console.log("Dropzone: Error when adding file");
+			TipManager.createTip({type:"error",icon:"×",text:"Error when adding file.<br>Are you sure the file is an image ?", delay: 4500});
 		});
 		this.dropzone.on("complete", function(file) { //addedfile or //complete
 			console.log("Dropzone: File added with the status", file.status);
