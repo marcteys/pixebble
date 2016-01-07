@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pebble Slim conf</title>
-	<link rel="stylesheet" type="text/css" href="css/slate.min.css">
-	<script type="text/javascript" src="js/slate.min.js"></script>
-	<style type="text/css">
-		#userName { text-transform: uppercase; }
-	</style>
+  <meta charset="UTF-8" />
+	<title>Pixebble Configurator</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 
-<div class="item-container">
-  <div class="item-container-header">User Name</div>
-	<div class="item-container-content">
-        <label class="item">
-          <div class="item-input-wrapper">
-            <input type="text" class="item-input" id="userName" name="username" placeholder="Your username">
-          </div>
-        </label>
-    </div>
+<div class="content">
+  <h1>Pixebble</h1>
 
-<div class="item-container">
-  <div class="button-container">
-    <input type="button" class="item-button" value="SEND" id="submit_button">
-  </div>
+  <h3>Configuration</h3>
+  <p>To configure Pixebble Watchapp, enter the <em>Unique identifier</em> set on the website <a href="http://half4.com/pixebble/">www.half4.com/pixebble/</a></p>
+    <div class="user-id-container" id="user-field">
+        <input type="text" id="userName"class="user-id" name="username" placeholder="Your identifier">
+        <p class="user-id-container-error-text" id="user-error-text">This field can only contain letters.</p>
+
+   </div>
+
+      <input type="button"  value="SEND" id="submit_button">
 </div>
+
+
   <script>
   function getConfigData() {
     //var userName = document.getElementById('userName');
@@ -57,12 +55,34 @@
    // document.location = "pebblejs://close#success";
   });
 
+
+
   (function() {
     var userName = document.getElementById('userName');
+    var userField = document.getElementById('user-field');
+    var userError = document.getElementById('user-error-text');
+
     // Load any previously saved configuration, if available
     if(localStorage['userName']) {
       userName.value = localStorage['userName'];
     }
+
+
+    userName.addEventListener('input', function() {
+      if(/^[a-zA-Z]+$/.test(userName.value)) {
+
+      } else {
+        userField.className += ' error';
+        userError.className += ' active';
+       setTimeout(function() {
+        userField.className = "user-id-container";
+        userError.className = "user-id-container-error-text";
+      }, 1500);
+       userName.value = userName.value.replace(/\s+/g, '').replace(/[^a-zA-Z-]/g, '').replace('-', '').toUpperCase();
+      }
+
+    });
+
   })();
   </script>
 
