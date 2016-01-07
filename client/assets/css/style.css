@@ -332,7 +332,7 @@ button.new-id:focus {
     color: #575757;
     line-height: 22px;
     text-align: center;
-
+    font-size: 14px;
 }
 
 .recent-uploads .thumbnail {
@@ -488,6 +488,20 @@ button.new-id:focus {
   height: 100%;
   text-align: center;
 }
+
+.dz-message span {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    text-align: center;
+    width: 150px;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #575757;
+    opacity: .6;
+    line-height: 22px;
+}
+
 .watchzone {
   position: absolute;
   left: 50%;

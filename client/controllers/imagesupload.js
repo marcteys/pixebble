@@ -17,7 +17,7 @@ var ImagesUpload = {
 			maxFilesize: 1,
 			parallelUploads: 1,
 			clickable: '.trigger',
-			dictDefaultMessage: "Drop ici mec",
+			dictDefaultMessage: "Drop an image to send it to the Pebble",
 			url: "server/images/", 
 			resize: function(file) {
 				var resizeInfo = {
