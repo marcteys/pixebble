@@ -634,6 +634,7 @@ button.new-id:focus {
 .help .tip:nth-child(2){ -webkit-animation-delay: .5s }
 .help .tip:nth-child(3){ -webkit-animation-delay: 1s }
 .help .tip:nth-child(4){ -webkit-animation-delay: 1.5s }
+.help .tip:nth-child(5){ -webkit-animation-delay: 2s }
 
 .help .tip.one {
 	top: 100px;

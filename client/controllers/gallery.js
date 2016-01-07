@@ -20,7 +20,7 @@ var Gallery = {
 		Pixebble.options.galleryContainer.html('');
 		$.each(response.data, function(i,data) {
 			if(data.name == null ) {
-				Pixebble.options.galleryContainer.html('<p>There are no recent uplaods for the user "' + data.user + '"</p>');
+				Pixebble.options.galleryContainer.html('<p>There are no recent uplaods for the user "' + data.user.toUpperCase() + '"</p>');
 			} else {
 				var $galleryElement = $(Templates.get("galleryElement", data));
 				Pixebble.options.galleryContainer.append($galleryElement);

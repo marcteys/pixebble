@@ -71,7 +71,10 @@ class Images{
 	 }
 
 	 function setActive($name) {
-	 	$user = explode("-",$name)[0];
+	 	$nameExplode = explode("-",$name);
+	 	$user = $nameExplode[0];
+	 	$timestamp = $nameExplode[1];
+	 	
 		if (exif_imagetype(UPLOAD_DIR . $name . '.png') == IMAGETYPE_PNG) {
 			try {
 				unlink(UPLOAD_DIR . $user . '.png');
@@ -79,7 +82,7 @@ class Images{
 			try {
 				copy(UPLOAD_DIR . $name . '.png',UPLOAD_DIR . $user .'.png');
 			} catch(Exeption $e){ }
-			return array("name" => $name . '.png',  "user"=> $user, "timestamp" => explode("-",$name)[1], "uploadDir" => UPLOAD_DIR_ABS);
+			return array("name" => $name . '.png',  "user"=> $user, "timestamp" => $timestamp, "uploadDir" => UPLOAD_DIR_ABS);
 		} else {
 			return array("name" => null,  "user"=> $user, "timestamp" => null, "uploadDir" => null);
 		}
