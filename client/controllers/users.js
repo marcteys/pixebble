@@ -23,6 +23,12 @@ var UsersManager = {
 			setTimeout(function() { $(element).parent().removeClass('saved') }, 1500);
 		} else {
 			console.log("Users: Must be letters only");
+			$(element).parent().addClass('error');
+			$('.user-id-container-error-text').addClass('active');
+			setTimeout(function() {
+				$(element).parent().removeClass('error');
+				$('.user-id-container-error-text').removeClass('active');
+			}, 1500);
 			$(element).val(that.removeAllNonAlphanumeric($(element).val()));
 		}
 	},
