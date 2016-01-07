@@ -7,7 +7,7 @@ var Pixebble = {
 		console.log("Pixebble: init");
 		var that = this;
 		this.options = settings;
-		Templates.loadTemplates(['watch', 'tip', 'galleryElement'], function() {
+		Templates.loadTemplates(['watch', 'tip', 'galleryElement', 'help'], function() {
 			that.addTemplate();
 			Gallery.getImages(UsersManager.getLocalUserId());
 			UsersManager.init();
@@ -26,6 +26,7 @@ var Pixebble = {
 			}, false);
 		});
 		ImagesUpload.init();
+		Help.init(".corner-info");
 	},
 
 };
