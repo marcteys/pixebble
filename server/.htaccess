@@ -1,7 +1,0 @@
-# Turn on the rewrite engine
-Options +FollowSymlinks
-RewriteEngine on
- 
-# Request routing
-RewriteRule ^([a-zA-Z_-]*)/?(.*)$   index.php?method=$1&action=$2&$3 [nc,qsa]
-# RewriteRule ^([a-zA-Z_-]*)/?$   index.php?method=$1 [nc,qsa]
