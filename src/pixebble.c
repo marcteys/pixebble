@@ -16,32 +16,24 @@ static char extension[] = ".png";
 
 void show_next_image() {
   set_user_name();
-  // show that we are loading by showing no image
+  
   bitmap_layer_set_bitmap(bitmap_layer, NULL);
-
-  //text_layer_set_text(text_layer, username);
   text_layer_set_text(text_layer, "Loading...");
-  text_layer_set_text(text_layer_pixebble, "PIXEBBLE");
 
-  layer_set_hidden(bitmap_layer_get_layer(bitmap_layer_loading), false);
-  layer_mark_dirty(bitmap_layer_get_layer(bitmap_layer_loading));
-
-  // Unload the current image if we had one and save a pointer to this one
   if (current_bmp) {
     gbitmap_destroy(current_bmp);
     current_bmp = NULL;
   }
 
   char newUrl[strlen(baseLink)+strlen(username)+strlen(extension)+3];
-  printf("%s", baseLink);
-  printf("%s", username);
-  printf("%s", extension);
+  //printf("%s", baseLink);
+  //printf("%s", username);
+  //printf("%s", extension);
   strcpy(newUrl, baseLink);
   strcat(newUrl, username);
   strcat(newUrl, extension);
   
   netdownload_request(newUrl);
-
 }
 
 static void window_load(Window *window) {
@@ -53,25 +45,10 @@ static void window_load(Window *window) {
   text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
 
-  text_layer_pixebble = text_layer_create((GRect) { .origin = { 0, 40 }, .size = { bounds.size.w, 20 } });
+  text_layer_pixebble = text_layer_create((GRect) { .origin = { 0, 20 }, .size = { bounds.size.w, 20 } });
   text_layer_set_text(text_layer_pixebble, "PIXEBBLE");
-  text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(text_layer_pixebble, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(text_layer_pixebble));
-
-  
-  bitmap_layer = bitmap_layer_create(bounds);
-  layer_add_child(window_layer, bitmap_layer_get_layer(bitmap_layer));
-  bitmap_layer_loading = bitmap_layer_create(bounds);
-  //layer_add_child(window_layer, bitmap_layer_get_layer(bitmap_layer_loading));
-  current_bmp = NULL;
-  
-  create_loading_image(&window);
-}
-
-
-void create_loading_image() {
-  Layer *window_layer = window_get_root_layer(window);
-  GRect bounds = layer_get_bounds(window_layer);
 
   s_loading_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PEBBLE_LOADING);
 
@@ -80,11 +57,16 @@ void create_loading_image() {
   bitmap_layer_set_alignment(bitmap_layer_loading, GAlignCenter);
   layer_add_child(window_layer, bitmap_layer_get_layer(bitmap_layer_loading));
 
+  bitmap_layer = bitmap_layer_create(bounds);
+  layer_add_child(window_layer, bitmap_layer_get_layer(bitmap_layer));
+  bitmap_layer_loading = bitmap_layer_create(bounds);
+  current_bmp = NULL;
+ 
 }
 
 static void window_unload(Window *window) {
   text_layer_destroy(text_layer);
-  text_layer_destroy(text_layer_pixebble;
+  text_layer_destroy(text_layer_pixebble);
   bitmap_layer_destroy(bitmap_layer);
   bitmap_layer_destroy(bitmap_layer_loading);
   gbitmap_destroy(current_bmp);
@@ -95,10 +77,6 @@ void download_complete_handler(NetDownload *download) {
   printf("Loaded image with %lu bytes", download->length);
   printf("Heap free is %u bytes", heap_bytes_free());
 
-  layer_set_hidden(bitmap_layer_get_layer(bitmap_layer_loading), true);
-  layer_mark_dirty(bitmap_layer_get_layer(bitmap_layer_loading));
-
-  
   GBitmap *bmp = gbitmap_create_from_png_data(download->data, download->length);
   bitmap_layer_set_bitmap(bitmap_layer, bmp);
 
