@@ -641,9 +641,10 @@ button.new-id:focus {
 	margin-right: 3%;
 }
 .help .tip img{
-    position: absolute;
-    right: 10px;
-    top: -28px;
+	position: absolute;
+	right: 10px;
+	top: -10px;
+	width: 60px;
 }
 
 .help .tip:nth-child(1){ -webkit-animation-delay: .3s }

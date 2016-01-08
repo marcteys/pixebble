@@ -200,3 +200,9 @@ p.user-id-container-error-text.active {
     opacity: 1;
 }
 
+footer {
+	position: absolute;
+	bottom:10px;
+	text-align: center;
+	width: 100%;
+}

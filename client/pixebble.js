@@ -27,6 +27,9 @@ var Pixebble = {
 		});
 		ImagesUpload.init();
 		Help.init(".corner-info");
+
+		//TipManager.createTip({type:"success",icon:":)",text:"It's your first visit, welcome. You can find some help on the top right corner !", delay:15000});
+
 	},
 
 };
