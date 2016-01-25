@@ -8,13 +8,12 @@ Pixebble is included with a Dither library, who automatically convert the colors
 Email [marc.teys@gmail.com][support] for questions or support.
 
 
-
 Getting Started
 ---------------
 
-Pixebble work in combinaison between a web service and an app. Because it's more complex to send image data to a Pebble, we cannot refresh the image in real time ; the user have to manually upload his design. 
+Pixebble is a combinaison of a web service and an app. Because it's complex to send image data to a Pebble, we cannot refresh the image in real time ; the user have to manually upload his design. 
 
- * Download [Pixebble WatchApp]() in the store
+ * Download [Pixebble Watchapp](https://apps.getpebble.com/en_US/application/56a63eaeed368bd240000035?dev_settings=true&native=false&query=pixebble&section=watchapps) in the store
  * Open [Pixebble website](www.half4.com/pixebble/) on your favorite browser 
  * Set a custom *Unique Identifier* and add it in the settings of the watchapp.
  * Upload your image on the website
@@ -44,11 +43,13 @@ First of all, thank for your help if you want to contribute. There are two solut
 Fork the repo, create a branch, do your work, and make a pull request. Please respect the [commits style](https://github.com/marcteys/pixebble/commits/master).
 If your contribution make sense, I will merge it in master. You can fix typos. 
 
+Web application is located on [master](https://github.com/marcteys/pixebble/tree/master) branch, Watchapp is on [watchapp](https://github.com/marcteys/pixebble/tree/watchapp) branch.
+
 
 **You are a user**
 
-Contact me and submit your ideas at [@marcteyssier](http://twitter.com/marcteyssier) or by [email][support].
-Found a bug ? Report it on the [issue tracker](https://github.com/marcteys/pixebble/issues).
+ Contact me and submit your ideas at [@marcteyssier](http://twitter.com/marcteyssier) or by [email][support].
+ Found a bug ? Report it on the [issue tracker](https://github.com/marcteys/pixebble/issues).
 
 
 License

@@ -55,6 +55,7 @@ table {
 body,html {
 	color:#ccc;
 	font-family: 'Open Sans', sans-serif;
+	    overflow: hidden;
 }
 .content {
 	height: 100%;
