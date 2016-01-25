@@ -137,7 +137,7 @@ a.get-app {
 	background:white url('../img/miniwatch.png') 126px center no-repeat;
 	cursor: pointer;
 	transition:all 200ms ease;
-
+	text-decoration: none;
 }
 
 a.get-app:hover {
