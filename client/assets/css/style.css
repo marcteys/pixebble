@@ -55,7 +55,6 @@ table {
 body,html {
 	color:#ccc;
 	font-family: 'Open Sans', sans-serif;
-	    overflow: hidden;
 }
 .content {
 	height: 100%;
@@ -382,7 +381,7 @@ button.new-id:focus {
 }
 
 .container {
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	left: 350px;
 	top: 0;
@@ -607,6 +606,7 @@ button.new-id:focus {
 	height: 100%;
 	width: calc(100% - 350px);
 	padding-left: 350px;
+	overflow: hidden;
 }
 
 .help button {
@@ -687,7 +687,7 @@ button.new-id:focus {
 ***************************/
 
 .corner {
-	position: absolute;
+	position: fixed;
 	top: -130px;
 	right: -310px;
 	height: 200px;

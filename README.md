@@ -32,7 +32,7 @@ TODOs
 --------
 
  * Explore previous images with up/down buttons
-
+ * Send an image without any ratio, just to verify the color saturation. Add a bolean. 
 
 Contributing
 -----------------
