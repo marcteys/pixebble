@@ -1,14 +1,16 @@
 var UsersManager = {
 
 	init:function(settings) {
+		this.bindUserInput();
 		if(window.location.hash && this.userCharactersCorrect(window.location.hash.substr(1))) {
 			this.setLocalUserId(window.location.hash.substr(1));
+			console.log("Users: Get username from hash");
 		} else if(this.getLocalUserId()) {
 			Pixebble.options.userIdInput.val(this.getLocalUserId());
 		} else {
 			this.makeUniqueUserId(this);
+			console.log("Users: Create makeUniqueUserId");
 		}
-		this.bindUserInput();
 	},
 
 	bindUserInput: function() {
@@ -49,6 +51,7 @@ var UsersManager = {
 
 	setLocalUserId: function(userId) {
 		if(!this.userCharactersCorrect(userId)) {
+			console.log("Users: Problem : user name contain invalid characters");
 			return false;
 		}
 		console.log("Users: Save user id " + userId.toUpperCase());
