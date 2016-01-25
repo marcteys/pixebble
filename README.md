@@ -17,7 +17,8 @@ Pixebble is a combinaison of a web service and an app. Because it's complex to s
  * Open [Pixebble website](www.half4.com/pixebble/) on your favorite browser 
  * Set a custom *Unique Identifier* and add it in the settings of the watchapp.
  * Upload your image on the website
- * Shake the watch or press the 
+ * Shake the watch or press the middle button to get the image on the watch
+ 
 
 
 Features

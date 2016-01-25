@@ -5,7 +5,6 @@ var Gallery = {
 	getImages:function(user) {
 		var that = this;
 		this.currentUser = user;
-		
 		$.ajax({
 		   url:'server/images/search?user='+user,
 		   method:'GET',
@@ -18,15 +17,21 @@ var Gallery = {
 	insertImages: function (response) {
 		var that = this;
 		Pixebble.options.galleryContainer.html('');
-		$.each(response.data, function(i,data) {
-			if(data.name == null ) {
-				Pixebble.options.galleryContainer.html('<p>There are no recent uplaods for the user "' + data.user.toUpperCase() + '"</p>');
-			} else {
-				var $galleryElement = $(Templates.get("galleryElement", data));
-				Pixebble.options.galleryContainer.append($galleryElement);
-				$galleryElement.on("click", function(e){ that.clickThumbnailImage(e,$galleryElement); });
-			}
-		});
+		if(typeof response.data === 'undefined') {
+			console.log("Gallery: " , response.data);
+			TipManager.createTip({type:"error",icon:":(",text:"Oops... There is an error, contact the developer !", delay:15000});
+		} else {
+			$.each(response.data, function(i,data) {
+				if(data.name == null ) {
+					Pixebble.options.galleryContainer.html('<p>There are no recent uplaods for the user "' + data.user.toUpperCase() + '"</p>');
+				} else {
+					var $galleryElement = $(Templates.get("galleryElement", data));
+					Pixebble.options.galleryContainer.append($galleryElement);
+					$galleryElement.on("click", function(e){ that.clickThumbnailImage(e,$galleryElement); });
+				}
+			});
+		}
+
 	},
 
 	addImage: function(imageData) {
