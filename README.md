@@ -1,7 +1,7 @@
 Pixebble
 ========
 
-[Pixebble](http://half4.com/pixebble/)
+[Pixebble](http://marcteyssier.com/data/pixebble/)
 
 Pixebble is the fastest way to preview your designs accurately on Pebble devices. With Pixebble, you can make sure your designs appear exactly the way you want on the Pebble OG, Pebble Time or Pebble Time Round. 
 
@@ -16,7 +16,7 @@ Getting Started
 Pixebble is a combinaison of a web service and an app. Because it's complex to send image data to a Pebble, we cannot refresh the image in real time ; the user have to manually upload his design. 
 
  * Download [Pixebble Watchapp](http://apps.getpebble.com/en_US/application/56a63eaeed368bd240000035?dev_settings=true&native=false&query=pixebble&section=watchapps) in the store
- * Open [Pixebble website](http://half4.com/pixebble/) on your favorite browser 
+ * Open [Pixebble website](http://marcteyssier.com/data/pixebble/) on your favorite browser 
  * Set a custom *Unique Identifier* and add it in the settings of the watchapp.
  * Upload your image on the website
  * Shake the watch or press the middle button to get the image on the watch
@@ -28,7 +28,7 @@ Features
 
  * You can keep records of your uploaded image. Clicking one on the gallery will select is as main image. 
  * The **Dither library** allows you to convert any image for pebble.
- * You library can be shared using the link **http://half4.com/pixebble/#*<your identifier>* **
+ * You library can be shared using the link **http://marcteyssier.com/data/pixebble/#*<your identifier>* **
 
 TODOs
 --------
