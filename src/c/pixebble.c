@@ -10,7 +10,7 @@ static GBitmap *current_bmp;
 static BitmapLayer *bitmap_layer_loading;
 static GBitmap *s_loading_bitmap;
 
-static char baseLink[] = "http://half4.com/pixebble/data/uploads/";
+static char baseLink[] = "http://marcteyssier.com/data/pixebble/data/uploads/";
 char *username = "NONE";
 static char extension[] = ".png";
 

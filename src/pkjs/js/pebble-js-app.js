@@ -3,7 +3,7 @@
 ////////////////////////////////
 
 Pebble.addEventListener('showConfiguration', function(e) {
-  Pebble.openURL('http://half4.com/pixebble/config/index.html');
+  Pebble.openURL('http://marcteyssier.com/data/pixebble/config/index.html');
 });
 
 Pebble.addEventListener('webviewclosed', function(e) {
